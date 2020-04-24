@@ -5,8 +5,8 @@ import math
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 
-MAP_X_BOUND = 12
-MAP_Y_BOUND = 12
+MAP_X_BOUND = 8
+MAP_Y_BOUND = 8
 CRIT_KEYS_LOWER_BOUND = int(0.75*MAP_X_BOUND)
 CRIT_KEYS_UPPER_BOUND = MAP_X_BOUND
 BON_KEYS_LOWER_BOUND = 8
