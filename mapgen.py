@@ -82,8 +82,10 @@ class Map:
         self._map[x][y] = room
 
     def _render(self):
-        lc_crit = LineCollection(self.crit_edges, color='r')
-        lc_bon = LineCollection(self.bon_edges, color='b')
+        lc_crit = LineCollection(
+            self.crit_edges, linewidths=(7), color='#DAA520', zorder=-1)
+        lc_bon = LineCollection(
+            self.bon_edges, linewidths=(7), color='#CD853F', zorder=-1)
         _, ax = plt.subplots()
         ax.add_collection(lc_crit)
         ax.add_collection(lc_bon)
@@ -99,11 +101,11 @@ class Map:
                     elif self._map[x][y].boss == True:
                         color = 'r'
                     elif self._map[x][y].crit == True:
-                        color = 'y'
+                        color = '#DAA520'
                     else:
-                        color = 'b'
-                    circ = plt.Circle((x, y), radius=0.17,
-                                      color=color, fill=True)
+                        color = '#CD853F'
+                    circ = plt.Rectangle((x-0.325, y-0.325), width=0.65, height=0.65,
+                                         color=color, fill=True)
                     ax.add_patch(circ)
 
     def show(self):
@@ -235,17 +237,17 @@ def boss_matrix(maps):
     return matrix
 
 
-# generate_map().show()
-print("generating maps...")
-maps = [generate_map() for _ in range(NUM_ITERATIONS)]
-print("calculating average rc...")
-print("average roomcount=", average_rc(maps))
-print("calculating base -> boss distance...")
-print("average manhattan base -> boss distance=",
-      average_mh_dist_base_to_boss(maps))
-print("calculating base matrix...")
-print("base matrix=")
-print(base_matrix(maps))
-print("calculating boss matrix...")
-print("boss matrix=")
-print(boss_matrix(maps))
+generate_map().show()
+# print("generating maps...")
+# maps = [generate_map() for _ in range(NUM_ITERATIONS)]
+# print("calculating average rc...")
+# print("average roomcount=", average_rc(maps))
+# print("calculating base -> boss distance...")
+# print("average manhattan base -> boss distance=",
+#       average_mh_dist_base_to_boss(maps))
+# print("calculating base matrix...")
+# print("base matrix=")
+# print(base_matrix(maps))
+# print("calculating boss matrix...")
+# print("boss matrix=")
+# print(boss_matrix(maps))
